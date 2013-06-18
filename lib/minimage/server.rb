@@ -23,7 +23,7 @@ end
 Minimage::Server.settings[:cache_expiration] = 3600*24*365
 
 Minimage::Server.define do
-  on get, %r{(?:(?:c_(fit|fill|limit)(?:,|\/)|w_(\d+)(?:,|\z)|h_(\d+)(?:,|\/)|g_(north_west|north|north_east|west|center|east|south_west|south|south_east)(?:,|\/))+)([^\\/]+)\.([a-z]{3,})} do |crop_mode, width, height, gravity, uid, format|
+  on get, %r{(?:(?:c_(fit|fill|limit)(?:,|\/)|w_(\d+)(?:,|\/)|h_(\d+)(?:,|\/)|g_(north_west|north|north_east|west|center|east|south_west|south|south_east)(?:,|\/))+)([^\\/]+)\.([a-z]{3,})} do |crop_mode, width, height, gravity, uid, format|
     stream = Minimage.fetch(uid)
     not_found unless stream
     stream = Minimage.process(stream, format) do |processor|
